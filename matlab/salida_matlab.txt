@@ -1,0 +1,31 @@
+Q = 0.0200 m3/s | k = 0.00833 1/min | tau = 120.0 min | Css = 7920 ppm | C(60) = 3371 ppm
+   llega a 1000 ppm a los 9.7 min
+Q = 0.2100 m3/s | k = 0.08750 1/min | tau = 11.4 min | Css = 1134 ppm | C(60) = 1131 ppm
+   llega a 1000 ppm a los 19.1 min
+Q = 0.2586 m3/s | k = 0.10775 1/min | tau = 9.3 min | Css = 1000 ppm | C(60) = 999 ppm
+   llega a 1000 ppm a los 87.5 min
+Ventilacion minima: 0.259 m3/s (8.6 L/s por persona)
+
+Diferencia maxima ode45 vs analitica: 0.1280 ppm
+
+Maqueta Q = 0.0010 m3/s | tau = 30.0 s | 95% limpio en 1.5 min
+Maqueta Q = 0.0001 m3/s | tau = 300.0 s | 95% limpio en 15.0 min
+
+T(30) = 23.79 C | llega a 25 C a los 19.6 min
+
+k real = 2.000 1/min | k estimado con los datos = 1.929 1/min | Q estimado = 0.96 L/s
+
+=========== VV ===========
+DI(30,80) = 28.30 C
+DI'(T): a mano = 0.8900 | numerica = 0.8900
+DI'(H): a mano = 0.0852 | numerica = 0.0853
+DI''(T) = -0.0000 | DI''(H) = -0.0000 | DI'TH = 0.0055 (a mano: 0, 0 y 0,0055)
+Gradiente en (30, 80): (0.890 ; 0.085)
+Error del indice por el sensor: +/- 0.62 C
+DI'(t) = DI'(T) * T'(t) = -0.356 C/min
+
+Css(30, 0.21) = 1134 ppm
+Css'(n) = 23.81 ppm por persona
+Css'(Q) = -3401 ppm por m3/s
+Css''(Q) = 32394 | Css'nQ = -113.4
+Curva de 1000 ppm: Q = 0.00862 n  ->  para 30 personas Q = 0.259 m3/s
