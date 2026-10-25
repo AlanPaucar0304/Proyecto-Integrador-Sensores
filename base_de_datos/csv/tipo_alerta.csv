@@ -1,0 +1,7 @@
+cod_tal,nombre_tal,variable_tal,condicion_tal,umbral_tal
+1,VENTILAR,CO2,>=,800
+2,CO2 ALTO,CO2,>=,1200
+3,CALOR,TEMPERATURA,>=,30
+4,FRIO,TEMPERATURA,<,20
+5,RUIDO ALTO,RUIDO,>=,70
+6,ERROR DHT22,TEMPERATURA,=,-999
