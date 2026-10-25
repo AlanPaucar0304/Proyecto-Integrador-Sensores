@@ -1,0 +1,31 @@
+digraph G {
+  graph [rankdir=TB, nodesep=0.35, ranksep=0.28, fontname="Arial", bgcolor="white", pad=0.2, dpi=200];
+  node [fontname="Arial", fontsize=11, color="#44546A", fontcolor="#262626", style="filled", fillcolor="#F3F4F6", shape=box, penwidth=1.2, margin="0.12,0.06"];
+  edge [fontname="Arial", fontsize=10, color="#5f5f5f", fontcolor="#44546A", arrowsize=0.7];
+  ini [label="Inicio (se conecta la energía)", shape=oval, fillcolor="#E7EAEF"];
+  auto [label="Autoprueba: 6 LEDs y extractor 2 s + pitido"];
+  cal [label="Precalentamiento del MQ-135\n(20 s en simulación, 120 s o más en el real)"];
+  ruido [label="1. Leer ruido (dB)"];
+  dr [label="¿ruido ≥ 70 dB?", shape=diamond, fillcolor="white"];
+  c1 [label="contador + 1"]; c0 [label="contador = 0"];
+  dht [label="2. Leer DHT22 (T, H)"];
+  co2 [label="3. Leer MQ-135 y convertir a ppm"];
+  dec [label="4. Decidir LEDs y mensaje\nsemáforo CO2 · calor · frío · ruido (3 lecturas) · error DHT22"];
+  on [label="¿T ≥ 30 °C o CO2 ≥ 1200?", shape=diamond, fillcolor="white"];
+  off [label="¿T ≤ 25 °C y CO2 < 1000?", shape=diamond, fillcolor="white"];
+  fon [label="Extractor ON"]; foff [label="Extractor OFF"]; fkeep [label="Extractor sigue igual\n(histéresis)"];
+  bz [label="¿CO2 ≥ 1200?", shape=diamond, fillcolor="white"];
+  pit [label="Pitido 0,3 s"];
+  lcd [label="5. Actualizar LCD 20x4"];
+  usb [label="6. Enviar línea por USB\nT,H,CO2,ruido,ventilador"];
+  w [label="Esperar 4 s"];
+  ini -> auto -> cal -> ruido -> dr;
+  dr -> c1 [label=" sí"]; dr -> c0 [label=" no"];
+  c1 -> dht; c0 -> dht; dht -> co2 -> dec -> on;
+  on -> fon [label=" sí"]; on -> off [label=" no"];
+  off -> foff [label=" sí"]; off -> fkeep [label=" no"];
+  fon -> bz; foff -> bz; fkeep -> bz;
+  bz -> pit [label=" sí"]; bz -> lcd [label=" no"]; pit -> lcd;
+  lcd -> usb -> w;
+  w -> ruido [constraint=false, label=" ciclo"];
+}
