@@ -157,7 +157,7 @@
       "top": -262.8,
       "left": -149.8,
       "attrs": {
-        "color": "white"
+        "color": "purple"
       }
     },
     {
@@ -184,7 +184,7 @@
       "top": -262.8,
       "left": 110.0,
       "attrs": {
-        "color": "purple"
+        "color": "white"
       }
     }
   ],
