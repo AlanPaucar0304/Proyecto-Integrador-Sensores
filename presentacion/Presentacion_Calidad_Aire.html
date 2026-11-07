@@ -955,7 +955,11 @@ const GUION = [
    "Each member with his or her role"
   ],
   "script": [
-   "Good morning, engineers and classmates. We are Alan Paucar, Lenin Manobanda, Andrea Quiroga and Daniela Valladolid. Our project is an air quality monitoring system with sensors. Our roles are on the screen."
+   "EN|[De pie al lado de la pantalla, mira al público] Good morning, engineers and classmates.",
+   "EN|[Señala los cuatro nombres de la derecha, de arriba abajo] We are Alan Paucar, Lenin Manobanda, Andrea Quiroga and Daniela Valladolid.",
+   "EN|[Señala el título del centro] Our project is an air quality monitoring system based on sensors.",
+   "EN|[Señala los roles, al lado de cada nombre] Our roles are on the screen.",
+   "[Flecha derecha]"
   ]
  },
  {
@@ -970,8 +974,15 @@ const GUION = [
    "General objective · 3 specific objectives · in scope / out of scope"
   ],
   "script": [
-   "In Orellana it is hot and humid all year, so classrooms, offices and shops stay closed. In a closed room, every person breathes out CO2. Outdoor air has about 420 parts per million. A full room can go over 1,000, and people get tired and lose concentration.",
-   "A commercial monitor costs about 250 dollars, and Orellana is the poorest province of Ecuador. Our objective is a low-cost system that measures, warns, ventilates by itself and saves the data. To test it, we use a model classroom: a closed space we can control. The official data path is the USB cable, and the CO2 value is an estimate. For this mid-term we also send the simulation data to ThingSpeak by WiFi, as an extra."
+   "EN|[Señala «80–89 %»] In Orellana it is hot and humid all year, so rooms stay closed.",
+   "EN|[Señala «> 1,000 ppm»] In a closed room, people breathe out CO2. A full room can go over one thousand parts per million, and people get tired.",
+   "EN|[Señala «≈ $250»] A commercial CO2 monitor costs about two hundred fifty dollars,",
+   "EN|[Señala «76.2 %»] and Orellana is the poorest province of Ecuador.",
+   "EN|[Señala los tres recuadros de la derecha, de arriba abajo] Our system is for classrooms, offices and small shops. To test it, we use a model classroom.",
+   "EN|[Señala la franja gris del objetivo general] Our objective is a low-cost system that measures, warns, turns on a fan by itself and saves the data.",
+   "EN|[Señala los recuadros 1, 2 y 3] Our three specific objectives are: analyze, design and simulate, and validate.",
+   "EN|[Señala la última línea, «+ Mid-term add-on»] The official data path is the USB cable. For this mid-term, we also send the simulation data to ThingSpeak by WiFi, as an extra.",
+   "[Flecha derecha y le pasa la palabra a Lenin]"
   ]
  },
  {
@@ -985,50 +996,60 @@ const GUION = [
    "Signals: analog (12-bit ADC) · one wire · I2C · digital outputs · USB serial"
   ],
   "script": [
-   "[Andrea opens Wokwi v4 (button on slide 4) and presses Play now: compiling, WiFi and the 20-second warm-up take about one minute.]",
-   "The ESP32 reads three sensors. The MQ-135 estimates CO2, the DHT22 measures temperature and humidity, and the MAX4466 microphone measures noise. The gas sensor and the microphone are analog, and the ESP32 converts them with its 12-bit ADC.",
-   "With these values the ESP32 decides by itself: LEDs, buzzer, and the exhaust fan through a relay. Every four seconds it sends one line by USB to the computer, and the data goes to SQL Server. The device decides, the computer remembers."
+   "[Señala los tres recuadros de arriba del diagrama (INPUTS)] El ESP32 lee tres sensores: el MQ-135 estima el CO2, el DHT22 mide temperatura y humedad, y el micrófono MAX4466 mide el ruido.",
+   "[Señala «ANALOG · 12-bit ADC», a la derecha] El sensor de gas y el micrófono son analógicos. El ESP32 los convierte en números con su conversor de 12 bits.",
+   "[Señala el recuadro grande del ESP32, en el centro] Con esos valores, el ESP32 decide solo:",
+   "[Recorre los recuadros de abajo a la izquierda: pantalla, LEDs, buzzer, relé y extractor] muestra los datos en la pantalla, prende los LEDs y el buzzer, y enciende el extractor por medio de un relé.",
+   "[Señala «USB SERIAL» y luego el recuadro de la computadora en el diagrama] Cada cuatro segundos manda una línea por el cable USB a la computadora, y la aplicación Java la guarda en SQL Server.",
+   "[Señala «WIFI · MID-TERM ADD-ON»] En la simulación también envía los datos a ThingSpeak por WiFi, como agregado del medio ciclo.",
+   "[Señala la frase del recuadro de abajo a la derecha] En resumen: el aparato decide y la computadora recuerda.",
+   "[Flecha derecha y le pasa la palabra a Andrea, que se pone en la computadora]"
   ]
  },
  {
   "n": 4,
   "t": "Live demo",
   "who": "Andrea",
-  "s": 180,
+  "s": 200,
   "lang": "Both",
   "screen": [
    "Wokwi v4 full screen (button Open Wokwi v4 on the slide) · ThingSpeak channel in another tab",
    "Backup on the slide: screenshot, all the rules, data line, 13/13"
   ],
   "script": [
-   "[First, move the gas slider to the minimum: the simulation always starts with high gas.]",
-   "EN|This is our simulation in Wokwi, version 4, built on a breadboard like the real device.",
-   "Wokwi has no MQ-135 and no microphone, so the gas sensor is an MQ-2 with a slider, and noise is a slide potentiometer. The purple LED is the fan. The values come from the sliders, so they test the logic. They are not real measurements.",
-   "EN|Normal air: green LED, fan off.",
-   "[Move the gas slider above 1,200 ppm]",
-   "EN|CO2 is above 1,200: red LED, buzzer and fan on.",
-   "[Move the gas slider down to about 1,100 ppm]",
-   "EN|The fan stays on. This is hysteresis.",
-   "It only turns off below 1,000, so the relay does not switch on and off all the time.",
-   "[Set the DHT22 to 31 °C]",
-   "EN|Temperature is 31 degrees: orange LED and fan on.",
-   "The fan turns off only at 25 degrees or less.",
-   "[Move the noise slider to the maximum and wait]",
-   "EN|Three loud readings in a row: white LED, no buzzer.",
-   "The buzzer does not sound for noise, because the microphone would hear it.",
-   "[Show the serial monitor]",
-   "EN|This is the data line: temperature, humidity, CO2, noise and fan.",
-   "We tested thirteen cases like these, and all of them passed. The evidence is in the report.",
-   "[Open the ThingSpeak channel in another tab]",
-   "EN|The simulation also sends the data to ThingSpeak by WiFi, every twenty seconds.",
-   "These charts are a mid-term extra. The official path is still the USB cable to our Java app and the database."
+   "[Clic en el botón azul «Open Wokwi v4», debajo de la captura. Se abre Wokwi en una pestaña nueva]",
+   "EN|[Clic en el botón verde de Play, arriba de la simulación] This is our simulation in Wokwi, version four, built on a breadboard like the real device.",
+   "[Señala el sensor de gas azul, a la izquierda de la protoboard] Mientras arranca, les explico el circuito. Wokwi no tiene el MQ-135 ni micrófono. Por eso el sensor de gas es un MQ-2 que se mueve con una barra,",
+   "[Señala el potenciómetro deslizante, abajo a la izquierda] y el ruido se simula con este potenciómetro deslizante.",
+   "[Señala el LED morado, en la fila de LEDs de la protoboard] Este LED morado representa al extractor.",
+   "[Señala la pantalla LCD, arriba a la derecha] Los valores salen de las barras: sirven para probar la lógica, no son mediciones reales.",
+   "[Señala el monitor serial, abajo, cuando diga «# WiFi connected», y luego la LCD con la cuenta regresiva] Ahora se conecta al WiFi y calienta el sensor veinte segundos, igual que el aparato real.",
+   "EN|[Cuando termine la cuenta, señala la LCD (CO2 1751, «CO2 ALTO»), luego el LED rojo y el LED morado encendidos] CO2 is above one thousand two hundred: red LED, buzzer and fan on.",
+   "EN|[Clic en el sensor de gas. Arrastra la barra hasta que marque 10. Espera 5 s y señala la LCD (CO2 1122)] Now CO2 is one thousand one hundred twenty-two: yellow LED, ventilate.",
+   "EN|[Señala el LED morado, que sigue encendido] But the fan stays on. This is hysteresis.",
+   "Solo se apaga cuando el CO2 baja de 1000. Así el relé no se prende y se apaga a cada rato cerca del límite.",
+   "EN|[Arrastra la barra del gas hasta que marque 1. Espera 5 s y señala el LED verde y el LED morado apagado] Now CO2 is five hundred fifty-one, below one thousand: green LED, and the fan turns off.",
+   "EN|[Cierra el panel del gas (X). Clic en el DHT22 blanco, arriba a la izquierda. Sube la temperatura a 31. Espera 5 s y señala el LED naranja y el morado] Thirty-one degrees: orange LED, heat message, and the fan turns on.",
+   "[Baja la temperatura a 25. Espera 5 s y señala el LED morado apagado] El extractor se apaga recién cuando la temperatura baja a 25 grados o menos.",
+   "[Cierra el panel del DHT22 (X). Arrastra la perilla del potenciómetro toda a la izquierda y señala la LCD (R:100dB)] Ahora el ruido está en 100 decibeles. El aviso no sale con la primera lectura: espera tres lecturas seguidas, para no alarmar por un golpe.",
+   "EN|[Espera unos 12 s. Cuando se prenda el LED blanco, señálalo y luego la LCD («RUIDO ALTO»)] Three loud readings in a row: white LED and the message high noise, but no buzzer.",
+   "No pita por ruido, porque el micrófono escucharía al buzzer y la alarma no pararía nunca.",
+   "[Regresa la perilla toda a la derecha]",
+   "EN|[Señala la última línea del monitor serial, abajo] This is the data line that goes by USB every four seconds: temperature, humidity, CO2, noise and fan.",
+   "Esta línea la recibe la aplicación Java y la guarda en SQL Server.",
+   "EN|[Ctrl + Tab hasta la pestaña de ThingSpeak. Señala las gráficas] The simulation also sends the data to ThingSpeak by WiFi, every twenty seconds.",
+   "[Señala el último punto de la gráfica de CO2] Es un agregado del medio ciclo: el camino oficial sigue siendo el cable USB.",
+   "[Ctrl + 1 para volver a la presentación y pulsa F (pantalla completa)]",
+   "EN|[Señala el recuadro verde «13 / 13 test cases passed»] We tested thirteen cases like these, and all of them passed.",
+   "La evidencia de cada prueba está en el informe.",
+   "[Flecha derecha y le pasa la palabra a Alan]"
   ]
  },
  {
   "n": 5,
   "t": "Differential Equations",
   "who": "Alan",
-  "s": 95,
+  "s": 85,
   "lang": "Both",
   "screen": [
    "1 Variables: t; C(t), T(t); V, Q, G, Cext, k, Ta",
@@ -1036,12 +1057,15 @@ const GUION = [
    "3 Interpretation: curve and three results"
   ],
   "script": [
-   "EN|These are the variables of our system.",
-   "The independent variable is time, which the Java app adds. The dependent variables are CO2 and temperature, from the sensors. The rest are parameters: the volume, the airflow, the CO2 that people breathe out and the outdoor CO2.",
-   "EN|For CO2 we use a mixing model: what comes in minus what goes out.",
-   "We write it as a linear equation, find P and Q, and use the integrating factor e to the k t. The solution is the box: CO2 goes to a steady value in an exponential way. Temperature follows Newton's law, which we solve with separable variables. As in class, k comes from one reading: if after 10 minutes the room is at 26.9 degrees, k is 0.049, and it reaches 25 degrees in about 20 minutes.",
-   "EN|In a full room with little ventilation, CO2 goes over 1,000 in about 10 minutes. To stay below 1,000 it needs 8.6 liters per second per person. That is why the device turns on the fan.",
-   "These are general models: for any closed space we only change the volume, the airflow and the number of people."
+   "EN|[Señala la tabla «1 · Variables of our system»] These are the variables of our system.",
+   "[Recorre la tabla de arriba abajo] La independiente es el tiempo, que lo pone la aplicación. Las dependientes son el CO2 y la temperatura. Lo demás son parámetros: el volumen, el caudal, el CO2 que exhalan las personas y el de afuera.",
+   "EN|[Señala el título «2 · Mixing model»] For CO2 we use a mixing model: what comes in minus what goes out.",
+   "[Señala los pasos 1, 2, 3 y 4, uno por uno] La escribimos como ecuación lineal, sacamos P y Q, y usamos el factor integrante, e elevado a k t. La solución es el recuadro: el CO2 llega a un valor estable de forma exponencial.",
+   "[Señala la ecuación de Newton y la línea de abajo (k = 0.049)] La temperatura sigue la ley de enfriamiento de Newton, que resolvemos por variables separables. Como en clase, k sale de un dato: si a los 10 minutos el local está a 26,9 grados, k vale 0,049, y llega a 25 grados en unos 20 minutos.",
+   "EN|[Recorre la curva azul de la gráfica, la que sube sin parar] In a full room with little ventilation, CO2 goes over one thousand in about ten minutes.",
+   "EN|[Señala el tercer punto rojo, debajo de la gráfica] To stay below one thousand, it needs eight point six liters per second per person. That is why the device turns on the fan.",
+   "[Señala la franja azul oscura de abajo] Son modelos generales: para cualquier espacio cerrado solo cambian el volumen, el caudal y el número de personas.",
+   "[Flecha derecha]"
   ]
  },
  {
@@ -1057,13 +1081,16 @@ const GUION = [
    "Quadric (saddle) · vector function r(t) · timeline"
   ],
   "script": [
-   "EN|The DHT22 gives temperature and humidity at the same time, so we use a function of two variables: the discomfort index.",
-   "As a polynomial it exists on all R two, but the model only works between 14.5 and 45 degrees and from 0 to 100 percent. We expand it and take the partial derivatives: with respect to T, H is constant, and with respect to H, T is constant. The second derivatives are zero, and the mixed one is 0.0055.",
-   "EN|At 30 degrees and 80 percent humidity the index is 28.3: most people feel discomfort.",
-   "One more degree adds 0.89, and ten more points of humidity add 0.85. So in Orellana humidity weighs almost like temperature. The mixed derivative says that the more humid it is, the more the heat bothers.",
-   "EN|The surface looks flat, but it is a quadric: a hyperbolic paraboloid, a saddle. We only see one piece of it.",
-   "Our two differential equation models also form a vector function r of t. Its limit is 1,134 ppm and 22 degrees, so both settle. If the DHT22 fails it sends minus 999, a jump, so we save it as NULL.",
-   "EN|Next cycle we use real data to find the minimum airflow that keeps people comfortable."
+   "EN|[Señala el recuadro de la fórmula DI(T, H)] The DHT22 gives temperature and humidity at the same time, so we use a function of two variables: the discomfort index.",
+   "[Señala el dominio D y la forma expandida] Como polinomio existe en todo R dos, pero el modelo vale entre 14,5 y 45 grados y de 0 a 100 % de humedad. Lo expandimos y sacamos las derivadas parciales.",
+   "[Señala ∂DI/∂T y ∂DI/∂H] Con respecto a T, la H es constante; con respecto a H, la T es constante.",
+   "[Señala «Second order and mixed»] Las segundas derivadas dan cero, y la mixta da 0,0055.",
+   "EN|[Señala DI(30, 80) = 28.3] At thirty degrees and eighty percent humidity, the index is twenty-eight point three: most people feel discomfort.",
+   "[Señala el gradiente en el recuadro] Un grado más sube el índice 0,89, y diez puntos de humedad lo suben 0,85: en Orellana la humedad pesa casi igual que la temperatura. La mixta dice que mientras más húmedo, más molesta el calor.",
+   "EN|[Señala la superficie 3D y luego el recuadro «THE SURFACE IS A QUADRIC»] The surface looks flat, but it is a quadric: a hyperbolic paraboloid, a saddle. We only see one piece of it.",
+   "[Señala el recuadro «VECTOR FUNCTION OF THE PROJECT»] Los dos modelos de ecuaciones diferenciales forman una función vectorial, r de t. Su límite es 1134 ppm y 22 grados: los dos se estabilizan. Su derivada en cero dice que al inicio el CO2 sube 62,5 ppm por minuto y la temperatura baja 0,39 grados por minuto. Si el DHT22 falla manda menos 999, un salto; por eso se guarda como NULL.",
+   "EN|[Señala la línea de tiempo de abajo] Next cycle, we use real data to find the minimum airflow that keeps people comfortable.",
+   "[Flecha derecha y le pasa la palabra a Lenin]"
   ]
  },
  {
@@ -1078,22 +1105,31 @@ const GUION = [
    "Reading table with the simulated test data"
   ],
   "script": [
-   "The simulated readings from our tests are not lost. We saved them in a CSV file and loaded them into SQL Server. Our ER model has five entities: device, place, session, reading and alert type. One reading can create many alerts, so this relation becomes the alert table. We built it in SQL Server with domains, rules and default values. The app role can only insert and read. Here is the reading table with the data from our tests."
+   "EN|[Señala la tabla «READING table», a la derecha] The simulated readings from our tests are not lost. We saved them in a CSV file and loaded them into SQL Server.",
+   "EN|[Recorre el diagrama de la izquierda] Our ER model has five entities: device, place, session, reading and alert type.",
+   "EN|[Señala el rombo entre LECTURA y TIPO_ALERTA] One reading can create many alerts, so this relation becomes the alert table.",
+   "EN|[Señala las líneas «Integrity» y «Roles» de la lista] We built it in SQL Server with domains, rules and default values. The app role can only insert and read.",
+   "EN|[Señala la última fila de la tabla, la que dice NULL] This is the reading table with the data from our tests. When the temperature sensor fails, the value is saved as NULL.",
+   "[Flecha derecha y le pasa la palabra a Daniela]"
   ]
  },
  {
   "n": 8,
   "t": "Status and next steps",
   "who": "Daniela",
-  "s": 40,
+  "s": 35,
   "lang": "English",
   "screen": [
    "Current state vs final goal · timeline",
    "Wireframe of the Java app (tabs) · 3D model classroom (full screen with M)"
   ],
   "script": [
-   "Current state: the design, the simulation version 4 with ThingSpeak, the database and the models are ready. This is the wireframe of our Java app: live values, history and charts. And this is the 3D view of our model classroom.",
-   "Final goal, in January: the real device inside the model, connected by USB to the app. Next steps: buy the parts this November, build in December, collect real data, and present the final project in January."
+   "EN|[Recorre la lista «Current state»] Current state: the design, the simulation version four with ThingSpeak, the database and the models are ready.",
+   "EN|[Señala la pantalla de la aplicación] This is the wireframe of our Java app: live values, history and charts.",
+   "EN|[Clic en la pestaña «3D model classroom»] And this is the 3D view of our model classroom.",
+   "EN|[Señala «Final goal · January 2027»] Final goal, in January: the real device inside the model, connected by USB to the app.",
+   "EN|[Recorre la línea de tiempo de izquierda a derecha] Next steps: buy the parts this November, build in December, collect real data, and present the final project in January.",
+   "[Flecha derecha]"
   ]
  },
  {
@@ -1106,7 +1142,9 @@ const GUION = [
    "Thank you · Questions"
   ],
   "script": [
-   "To sum up: a device of about 100 dollars that measures, warns and acts by itself. Thank you. We are ready for your questions."
+   "EN|[Mira al público] To sum up: a device of about one hundred dollars that measures, warns and acts by itself.",
+   "EN|Thank you. We are ready for your questions.",
+   "[Los cuatro se ponen al frente]"
   ]
  }
 ];
