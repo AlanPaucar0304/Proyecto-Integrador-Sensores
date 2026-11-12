@@ -12,8 +12,8 @@ Aparato de bajo costo con un **ESP32** que mide **CO2 estimado, temperatura, hum
 | Integrante | Rol |
 |---|---|
 | Alan Paucar | Líder del proyecto · Ecuaciones Diferenciales · Cálculo de Varias Variables |
-| Lenin Manobanda | Hardware · Base de datos |
-| Andrea Quiroga | Simulación y pruebas · Diseño de la aplicación |
+| Lenin Manobanda | Simulación y pruebas · Diseño de la aplicación |
+| Andrea Quiroga | Hardware · Base de datos |
 | Daniela Valladolid | Gestión del proyecto · Contexto social |
 
 ## Simulación (Wokwi, versión 4)
